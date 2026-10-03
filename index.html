@@ -1,10 +1,30 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>nft-marketplace</title>
+    <meta
+      name="description"
+      content="Kurio é o marketplace para descobrir, favoritar e comprar NFTs com carrinho, carteira simulada e confirmação de pedido."
+    />
+    <meta name="theme-color" content="#140d0a" />
+    <title>Kurio — Marketplace de NFTs</title>
+    <!-- LCP: imagem do hero buscada junto com o HTML, sem esperar o JavaScript. -->
+    <link
+      rel="preload"
+      as="image"
+      type="image/webp"
+      href="/nfts/emerald-400.webp"
+      imagesrcset="/nfts/emerald-160.webp 160w, /nfts/emerald-400.webp 400w, /nfts/emerald-720.webp 720w, /nfts/emerald-1080.webp 1080w"
+      imagesizes="(min-width: 1024px) 450px, (min-width: 768px) 45vw, 140px"
+      fetchpriority="high"
+    />
+    <script>
+      // Registra o service worker do MSW em paralelo ao download do JS (worker.start() reaproveita o registro).
+      if ("%VITE_ENABLE_MSW%" !== "false" && "serviceWorker" in navigator) navigator.serviceWorker.register("/mockServiceWorker.js")
+    </script>
+    <style>html,body{background:#140d0a;color:#f5f1eb}</style>
   </head>
   <body>
     <div id="root"></div>

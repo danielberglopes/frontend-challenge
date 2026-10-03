@@ -1,0 +1,4 @@
+# Scripts de instalação permitidos (pnpm 11+ bloqueia por padrão).
+# msw: o postinstall sincroniza public/mockServiceWorker.js (workerDirectory em package.json).
+allowBuilds:
+  msw: true

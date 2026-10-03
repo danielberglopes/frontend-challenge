@@ -1,111 +1,211 @@
+@import "tailwindcss";
+
+/* Tokens extraídos do Figma (Frontend Challenge). */
+@theme {
+  --color-ink: #140d0a;
+  --color-ink-deep: #110b08;
+  --color-panel: #241612;
+  --color-panel-2: #2e1d17;
+  --color-band: #38220f;
+  --color-line: #5f3f24;
+  --color-cream: #f5f1eb;
+  --color-muted: #cfb28c;
+  --color-faint: #b39463;
+  --color-amber: #e89b55;
+  --color-fill: #d28a4c;
+  --color-fill-deep: #b5723b;
+  --color-required: #f0805f;
+  --color-danger: #ff9f8a;
+  --color-ok: #a6dcb0;
+  --font-sans: "Roboto Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --font-mono: "Roboto Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --shadow-card: 0 18px 40px rgba(0, 0, 0, 0.35);
+}
+
+/*
+ * Tokens semânticos do shadcn/ui (components.json → cssVariables) mapeados para a paleta Kurio.
+ * "muted" de fundo não é mapeado porque text-muted já é o texto secundário do Figma (#cfb28c).
+ */
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+  --background: #140d0a;
+  --foreground: #f5f1eb;
+  --card: #241612;
+  --card-foreground: #f5f1eb;
+  --popover: #241612;
+  --popover-foreground: #f5f1eb;
+  --primary: #d28a4c;
+  --primary-foreground: #140d0a;
+  --secondary: #241612;
+  --secondary-foreground: #f5f1eb;
+  --muted-foreground: #cfb28c;
+  --accent: #2e1d17;
+  --accent-foreground: #f5f1eb;
+  --destructive: #ff9f8a;
+  --border: #3b271c;
+  --input: #3b271c;
+  --ring: #e89b55;
+}
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
 
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
 
-  @media (max-width: 1024px) {
-    font-size: 16px;
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--color-ink);
+    color: var(--color-cream);
+    font-family: var(--font-sans);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  #root {
+    min-height: 100vh;
+  }
+
+  button,
+  [role="button"],
+  label[for],
+  select {
+    cursor: pointer;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-amber);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: var(--color-fill);
+    color: var(--color-ink);
+  }
+
+  /* Autopreenchimento do navegador sem fundo claro: mantém as cores dos campos do Figma. */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  select:-webkit-autofill {
+    -webkit-text-fill-color: var(--foreground);
+    caret-color: var(--foreground);
+    box-shadow: 0 0 0 1000px var(--background) inset;
+    transition: background-color 9999s ease-out 0s;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--color-faint);
+    opacity: 1;
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+/* Botão de ação principal nos frames mobile (pílula com degradê). */
+@utility bg-fill-gradient {
+  background-image: linear-gradient(100deg, #d28a4c 0%, #c27d43 55%, #a96c3a 100%);
+}
+
+/* Cartão de destaque do hero mobile. */
+@utility bg-hero-mobile {
+  background-image:
+    radial-gradient(circle at 34% 58%, rgb(210 138 76 / 0.16) 0 34%, transparent 34.2%),
+    radial-gradient(circle at 74% 6%, rgb(210 138 76 / 0.12) 0 30%, transparent 30.2%),
+    linear-gradient(135deg, #5a3a20 0%, #3d2716 55%, #2e1d12 100%);
+}
+
+/* Painel "NFT em destaque". */
+@utility bg-featured {
+  background-image: linear-gradient(180deg, #2c1b10 0%, #241612 100%);
+}
+
+/* Slider duplo de faixa de preço (dois inputs range sobrepostos). */
+@utility range-dual {
+  pointer-events: none;
+  appearance: none;
+  background: transparent;
+  &::-webkit-slider-thumb {
+    pointer-events: auto;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 9999px;
+    background: #d28a4c;
+    border: 3px solid #f5c79a;
+    cursor: pointer;
   }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
+  &::-moz-range-thumb {
+    pointer-events: auto;
+    width: 14px;
+    height: 14px;
+    border-radius: 9999px;
+    background: #d28a4c;
+    border: 3px solid #f5c79a;
+    cursor: pointer;
   }
-}
-
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-}
-
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
-}
-
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
+  &:focus-visible::-webkit-slider-thumb {
+    outline: 2px solid #f5f1eb;
+    outline-offset: 2px;
   }
 }
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
+
+@keyframes kurio-shimmer {
+  0% {
+    background-position: 180% 0;
+  }
+  100% {
+    background-position: -80% 0;
   }
 }
-p {
-  margin: 0;
+
+@utility shimmer {
+  background-color: #241612;
+  background-image: linear-gradient(90deg, #241612 0%, #3a261b 45%, #241612 100%);
+  background-size: 200% 100%;
+  animation: kurio-shimmer 1.35s ease-in-out infinite;
 }
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .shimmer {
+    animation: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }
