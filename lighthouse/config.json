@@ -1,0 +1,11 @@
+{
+  "port": 4180,
+  "runs": 3,
+  "categories": ["performance", "accessibility", "best-practices", "seo"],
+  "profiles": ["mobile", "desktop"],
+  "pages": [
+    { "name": "inicio", "path": "/" },
+    { "name": "detalhe", "path": "/nfts/emerald-ape-042" }
+  ],
+  "targets": { "performance": 90, "accessibility": 95, "best-practices": 95, "seo": 90 }
+}
