@@ -1,4 +1,10 @@
-# Scripts de instalação permitidos (pnpm 11+ bloqueia por padrão).
-# msw: o postinstall sincroniza public/mockServiceWorker.js (workerDirectory em package.json).
+# Projeto único (o campo "packages" é exigido pelo pnpm 9 quando este arquivo existe).
+packages:
+  - "."
+
+# Scripts de instalação permitidos. msw: o postinstall sincroniza public/mockServiceWorker.js.
+# pnpm 10 lê onlyBuiltDependencies; pnpm 11+ lê allowBuilds (e bloqueia o install sem ele).
+onlyBuiltDependencies:
+  - msw
 allowBuilds:
   msw: true
